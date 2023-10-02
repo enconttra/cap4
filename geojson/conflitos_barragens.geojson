@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "conflitos_barragens",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "Id": 0, "conflito": "Barragem", "comunidade": null }, "geometry": { "type": "Point", "coordinates": [ -53.815681187441669, -23.665679842679221 ] } }
+]
+}
