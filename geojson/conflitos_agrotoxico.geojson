@@ -1,0 +1,17 @@
+{
+"type": "FeatureCollection",
+"name": "conflitos_agrotoxico",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "Id": 0, "conflito": "Monocultura", "comunidade": null }, "geometry": { "type": "Point", "coordinates": [ -51.688530659182199, -24.887932827657881 ] } },
+{ "type": "Feature", "properties": { "Id": 0, "conflito": "Monocultura", "comunidade": null }, "geometry": { "type": "Point", "coordinates": [ -51.101086143341384, -25.440726538753996 ] } },
+{ "type": "Feature", "properties": { "Id": 0, "conflito": "Monocultura", "comunidade": null }, "geometry": { "type": "Point", "coordinates": [ -50.625536774402008, -24.482828090068626 ] } },
+{ "type": "Feature", "properties": { "Id": 0, "conflito": "Monocultura", "comunidade": null }, "geometry": { "type": "Point", "coordinates": [ -49.369762243925891, -25.788580028115646 ] } },
+{ "type": "Feature", "properties": { "Id": 0, "conflito": "Monocultura", "comunidade": null }, "geometry": { "type": "Point", "coordinates": [ -50.71227412690007, -25.086374615787303 ] } },
+{ "type": "Feature", "properties": { "Id": 0, "conflito": "Monocultura", "comunidade": null }, "geometry": { "type": "Point", "coordinates": [ -50.409646785843698, -25.942617054921826 ] } },
+{ "type": "Feature", "properties": { "Id": 0, "conflito": "Monocultura", "comunidade": null }, "geometry": { "type": "Point", "coordinates": [ -52.103195636968742, -24.654707583903058 ] } },
+{ "type": "Feature", "properties": { "Id": 0, "conflito": "Agrotóxico - Descarte Indevido de Embalagem", "comunidade": null }, "geometry": { "type": "Point", "coordinates": [ -51.534646462672299, -25.469862599623625 ] } },
+{ "type": "Feature", "properties": { "Id": 0, "conflito": "Agrotóxico - Descarte Indevido de Embalagem", "comunidade": null }, "geometry": { "type": "Point", "coordinates": [ -53.787726245235092, -23.340142308801742 ] } },
+{ "type": "Feature", "properties": { "Id": 0, "conflito": "Agrotóxico - Descarte Indevido de Embalagem", "comunidade": null }, "geometry": { "type": "Point", "coordinates": [ -50.48321388417655, -25.652591483720876 ] } }
+]
+}
