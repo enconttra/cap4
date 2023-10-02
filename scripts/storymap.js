@@ -449,6 +449,7 @@ $(window).on('load', function() {
                   }
                 }
               }).addTo(map);
+              }
             });
           }
 
