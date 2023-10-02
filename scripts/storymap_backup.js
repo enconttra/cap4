@@ -139,7 +139,6 @@ $(window).on('load', function() {
     var currentlyInFocus; // integer to specify each chapter is currently in focus
     var overlay;  // URL of the overlay for in-focus chapter
     var geoJsonOverlay;
-    var geoJsonOverlay2;
 
     for (i in chapters) {
       var c = chapters[i];
@@ -151,23 +150,16 @@ $(window).on('load', function() {
         chapterCount += 1;
 
         markers.push(
-         L.marker([lat, lon], {
-            icon: c['Marker'] === 'Image' 
-            ? 
-            L.icon({
-              iconUrl: c['Marker Image'],
-              iconSize:     [50, 50]
-            })            
-            : 
-              L.ExtraMarkers.icon({
-                icon: 'fa-number',
-                number: c['Marker'] === 'Numbered'
-                  ? chapterCount
-                  : (c['Marker'] === 'Plain'
-                    ? ''
-                    : c['Marker']), 
-                markerColor: c['Marker Color'] || 'blue'
-              }),
+          L.marker([lat, lon], {
+            icon: L.ExtraMarkers.icon({
+              icon: 'fa-number',
+              number: c['Marker'] === 'Numbered'
+                ? chapterCount
+                : (c['Marker'] === 'Plain'
+                  ? ''
+                  : c['Marker']), 
+              markerColor: c['Marker Color'] || 'blue'
+            }),
             opacity: c['Marker'] === 'Hidden' ? 0 : 0.9,
             interactive: c['Marker'] === 'Hidden' ? false : true,
           }
@@ -285,7 +277,7 @@ $(window).on('load', function() {
       pixelsAbove[i] = pixelsAbove[i-1] + $('div#container' + (i-1)).height() + chapterContainerMargin;
     }
     pixelsAbove.push(Number.MAX_VALUE);
-    
+
     $('div#contents').scroll(function() {
       var currentPosition = $(this).scrollTop();
 
@@ -293,7 +285,7 @@ $(window).on('load', function() {
       if (currentPosition < 200) {
         $('#title').css('opacity', 1 - Math.min(1, currentPosition / 100));
       }
-      
+
       for (var i = 0; i < pixelsAbove.length - 1; i++) {
 
         if ( currentPosition >= pixelsAbove[i]
@@ -320,9 +312,6 @@ $(window).on('load', function() {
           // Remove GeoJson Overlay tile layer if needed
           if (map.hasLayer(geoJsonOverlay)) {
             map.removeLayer(geoJsonOverlay);
-          }
-          if (map.hasLayer(geoJsonOverlay2)) {
-            map.removeLayer(geoJsonOverlay2);
           }
 
           var c = chapters[i];
@@ -355,24 +344,7 @@ $(window).on('load', function() {
 
           if (c['GeoJSON Overlay']) {
             $.getJSON(c['GeoJSON Overlay'], function(geojson) {
-              if (c['Marker Image']) {
-                function createCustomIcon (feature, latlng) {
-                  let myIcon = L.icon({
-                    iconUrl: c['Marker Image'],
-                    //shadowUrl: c['Marker Image'],
-                    iconSize:     [25, 25], // width and height of the image in pixels
-                    //shadowSize:   [35, 20], // width, height of optional shadow image
-                    iconAnchor:   [12, 12] //, // point of the icon which will correspond to marker's location
-                    //shadowAnchor: [12, 6],  // anchor point of the shadow. should be offset
-                    //popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
-                  })
-                  return L.marker(latlng, { icon: myIcon })
-                }
-                let myLayerOptions = {
-                  pointToLayer: createCustomIcon
-                }
-                geoJsonOverlay = L.geoJson(geojson, myLayerOptions).addTo(map);
-              } else {
+
               // Parse properties string into a JS object
               var props = {};
 
@@ -387,41 +359,6 @@ $(window).on('load', function() {
               }
 
               geoJsonOverlay = L.geoJson(geojson, {
-                style: function(feature) {
-                  return {
-                    fillColor: feature.properties.fillColor || props.fillColor || '#ffffff',
-                    weight: feature.properties.weight || props.weight || 1,
-                    opacity: feature.properties.opacity || props.opacity || 0.5,
-                    color: feature.properties.color || props.color || '#cccccc',
-                    fillOpacity: feature.properties.fillOpacity || props.fillOpacity || 0.5,
-                  }
-                }
-              }).addTo(map);
-              }
-            });
-          }
-        //
-        //
-        // Segundo layer de geosjon
-        //
-        // 
-          if (c['GeoJSON Overlay 2']) {            
-            $.getJSON(c['GeoJSON Overlay 2'], function(geojson) {
-
-              // Parse properties string into a JS object
-              var props = {};
-
-              if (c['GeoJSON Feature Properties 2']) {
-                var propsArray = c['GeoJSON Feature Properties 2'].split(';');
-                var props = {};
-                for (var p in propsArray) {
-                  if (propsArray[p].split(':').length === 2) {
-                    props[ propsArray[p].split(':')[0].trim() ] = propsArray[p].split(':')[1].trim();
-                  }
-                }
-              }
-
-              geoJsonOverlay2 = L.geoJson(geojson, {
                 style: function(feature) {
                   return {
                     fillColor: feature.properties.fillColor || props.fillColor || '#ffffff',
